@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <label for="showID" class="form-label" style="margin-top: 20px;">Show ID</label>
+      <input type="number" class="form-control" id="showID" placeholder="Input ID" [(ngModel)]="showId">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" style="min-width: 150px; margin-top: 10px; float: right;" (click)="loadShow()">Load</button>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;" *ngIf="isLoad === false">
+    <div class="col">
+      <div class="card" style="width: 18rem;">
+        <img [src]="showImg" class="card-img-top" alt="showName">
+        <div class="card-body">
+          <p class="card-text">{{ showName }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;" *ngIf="isLoad === false">
+    <div class="col">
+      <p class="font-italic">Number of cast: {{listCast.length}}</p>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Date of birth</th>
+            <th scope="col">Character</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let c of listCast; index as i;">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{c.person.name}}</td>
+            <td>{{c.person.birthday | date : "mediumDate"}}</td>
+            <td>{{c.character.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
